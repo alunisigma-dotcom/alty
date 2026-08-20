@@ -2,7 +2,7 @@
   ptoszek.pl
   Powered by Jaczup
 
-  My version (ptoszek.pl): 
+  My version (https://alunisigma-dotcom.github.io/alty/): 
   - https://github.com/jaczup/ptoszek.pl
   Original version (theannoyingsite.com): 
   - https://github.com/feross/TheAnnoyingSite.com/
@@ -36,37 +36,25 @@ const HIDDEN_STYLE = 'position: fixed; width: 1px; height: 1px; overflow: hidden
 
 const ART = [
   `
-┊┊ ☆┊┊┊┊☆┊┊☆ ┊┊┊┊┊
-┈┈┈┈╭━━━━━━╮┊☆ ┊┊
-┈☆ ┈┈┃╳╳╳▕╲▂▂╱▏┊┊
-┈┈☆ ┈┃╳╳╳▕▏▍▕▍▏┊┊
-┈┈╰━┫╳╳╳▕▏╰┻╯▏┊┊
-☆ ┈┈┈┃╳╳╳╳╲▂▂╱┊┊┊
-┊┊☆┊╰┳┳━━┳┳╯┊ ┊ ☆┊
-  `,
-  `
-░░▓▓░░░░░░░░▓▓░░
-░▓▒▒▓░░░░░░▓▒▒▓░
-░▓▒▒▒▓░░░░▓▒▒▒▓░
-░▓▒▒▒▒▓▓▓▓▒▒▒▒▓░
-░▓▒▒▒▒▒▒▒▒▒▒▒▒▒▓
-▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓
-▓▒▒▒░▓▒▒▒▒▒░▓▒▒▓
-▓▒▒▒▓▓▒▒▒▓▒▓▓▒▒▓
-▓▒░░▒▒▒▒▒▒▒▒▒░░▓
-▓▒░░▒▓▒▒▓▒▒▓▒░░▓
-░▓▒▒▒▓▓▓▓▓▓▓▒▒▓░
-░░▓▒▒▒▒▒▒▒▒▒▒▓░░
-░░░▓▓▓▓▓▓▓▓▓▓░░░
+♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱
+♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱
+♱♱♱♱♱♱♱♱333ALUNI♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱
+♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱
+♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱
+♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱
+♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱
+♱♱♱♱♱♱♱♱47TYSIACZEK♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱
+♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱
+♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱♱
   `
 ]
 
 const SEARCHES = [
-  'jshop',
-  'ptoszek',
-  'ptak',
-  'kanarek',
-  'jaczup'
+  'star 244',
+  'bvbfanrobalinigoat tiktok',
+  'Tys1acz3k tiktok',
+  'Robalini',
+  'flaga izraela'
 ]
 
 const VIDEOS = [
@@ -102,14 +90,14 @@ const FILE_DOWNLOADS = [
 ]
 
 const PHRASES = [
-  'hello my name is ptoszek, lol',
-  'birds are funny lalalalalalalallalala',
-  'wgl co u cb bo u mn dbr',
-  'knuuurrr eksplozja',
-  'hee haw hee haw hee haw hee haw hee haw hee haw hee haw hee haw hee haw hee haw hee haw',
-  'abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz',
-  'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaak',
-  'eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo eyo'
+  'hello my name is Aluni,And mine is Tysiaczek ',
+  'Dzieki ci za te slowa o o o o o o o o o o o',
+  'B JAK BANDEROWIEC',
+  'Gari Gari Gari Gari Gari Gari Gari Gari Gari Gari Gari',
+  'AluniTysiaczekmoggerzyAluniTysiaczekmoggerzyAluniTysiaczekmoggerzy',
+  'KorneliaKorneliaKorneliaKorneliaKorneliaKorneliaKorneliaKorneliaKorneliaKorneliaKornelia',
+  'Copy maded by Aluni and Tysiaczek Copy maded by Aluni and Tysiaczek',
+  'sybysapisybysapisybysapisybysapi'
 ]
 
 const LOGOUT_SITES = {
