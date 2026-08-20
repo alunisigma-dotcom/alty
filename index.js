@@ -678,7 +678,7 @@ function startTheramin () {
 
   const oscillator = ({ pitch, volume }) => {
     oscillatorNode.frequency.value = pitchBase + pitch * pitchRange
-    gainNode.gain.value = volume * 3
+    gainNode.gain.value = volume * 50
   }
 
   document.body.addEventListener('mousemove', event => {
