@@ -63,6 +63,7 @@ const VIDEOS = [
   'media/videos/rickroll.mp4',
   'media/videos/golomb.mp4',
   'media/videos/mushbox.mp4',
+  'media/videos/clearmax.mp4',
   'media/videos/freestrona.mp4',
   'media/videos/ajhsdfhjasdbhfjasdfs.mp4',
   'media/videos/v09044g40000cgr968jc77u1t2krb89g.mp4',
@@ -70,9 +71,9 @@ const VIDEOS = [
   'media/videos/szybkakaczka.mp4', // added by @dan64iel
   'media/videos/kaczuszka.mp4', //added by @imzeme
   'media/videos/gratulacje.mp4', //added by @GameShoot8050
-  'media/videos/puddi.mp4' //added by @MariaWasNotAvailable
-  'media/videos/speed.mp4',
-  'media/videos/aluniasz.mp4',
+  'media/videos/puddi.mp4', //added by @MariaWasNotAvailable
+  'media/videos/speed.mp4', //added by @Aluni
+  'media/videos/aluniasz.mp4'
 ]
 
 const FILE_DOWNLOADS = [
