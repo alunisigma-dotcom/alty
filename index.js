@@ -50,7 +50,7 @@ const ART = [
 ]
 
 const SEARCHES = [
-  'star 244',
+  'Tokio Hotel',
   'bvbfanrobalinigoat tiktok',
   'Tys1acz3k tiktok',
   'Robalini',
