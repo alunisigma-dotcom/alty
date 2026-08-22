@@ -192,11 +192,14 @@ else initParentWindow()
  */
 function init () {
   confirmPageUnload()
-
+ 
   const audio = new Audio('media/audio/robalini.wav')
-  audio.volume = 1.0
-  audio.loop = true
+audio.volume = 1.0
+audio.loop = true
+
+document.addEventListener('click', () => {
   audio.play().catch(() => {})
+}, { once: true })
 
   interceptUserInput(event => {
     interactionCount += 1
