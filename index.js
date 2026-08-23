@@ -81,7 +81,6 @@ const FILE_DOWNLOADS = [
   'media/images/jaczupme.jpg',
   'media/images/rusek.jpg',
   'media/images/tysiaczek.jpg',
-  'media/images/robalini.jpg',
 ]
 
 const PHRASES = [
