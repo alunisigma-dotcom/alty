@@ -55,6 +55,7 @@ const SEARCHES = [
   'Tys1acz3k tiktok',
   'Robalini',
   'flaga izraela'
+  'Star 244'
 ]
 
 const VIDEOS = [
@@ -84,13 +85,13 @@ const FILE_DOWNLOADS = [
 ]
 
 const PHRASES = [
-  'hello my name is Aluni,And mine is Tysiaczek ',
+  'Tiktok tysiaczek  ',
   'Dzieki ci za te slowa o o o o o o o o o o o',
-  'B JAK BANDEROWIEC',
+  'Tiktok befalberobalinigoat',
   'Gari Gari Gari Gari Gari Gari Gari Gari Gari Gari Gari',
-  'AluniTysiaczekmoggerzyAluniTysiaczekmoggerzyAluniTysiaczekmoggerzy',
+  'Star244Star244Star244Star244Star244Star244Star244',
   'KorneliaKorneliaKorneliaKorneliaKorneliaKorneliaKorneliaKorneliaKorneliaKorneliaKornelia',
-  'Copy maded by Aluni and Tysiaczek Copy maded by Aluni and Tysiaczek',
+  '33333333333333333333',
   'sybysapisybysapisybysapisybysapi'
 ]
 
