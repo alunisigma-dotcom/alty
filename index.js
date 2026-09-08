@@ -54,7 +54,7 @@ const SEARCHES = [
   'bvbfanrobalinigoat tiktok',
   'Tys1acz3k tiktok',
   'Robalini',
-  'flaga izraela'
+  'flaga izraela',
   'Star 244'
 ]
 
@@ -90,7 +90,7 @@ const PHRASES = [
   'Tiktok befalberobalinigoat',
   'Gari Gari Gari Gari Gari Gari Gari Gari Gari Gari Gari',
   'Star244Star244Star244Star244Star244Star244Star244',
-  'KorneliaKorneliaKorneliaKorneliaKorneliaKorneliaKorneliaKorneliaKorneliaKorneliaKornelia',
+  'NOWY ALBUM ENCORE TOKIO hOTEL',
   '33333333333333333333',
   'sybysapisybysapisybysapisybysapi'
 ]
