@@ -51,11 +51,12 @@ const ART = [
 
 const SEARCHES = [
   'Tokio Hotel',
-  'bvbfanrobalinigoat tiktok',
+  'aluni.prawdziwy tiktok',
   'Tys1acz3k tiktok',
   'Robalini',
   'flaga izraela',
-  'Star 244'
+  'Star 244/Jelcz 005 GBA',
+  'm0NESY faceit'
 ]
 
 const VIDEOS = [
@@ -82,16 +83,20 @@ const FILE_DOWNLOADS = [
   'media/images/jaczupme.jpg',
   'media/images/rusek.jpg',
   'media/images/tysiaczek.jpg',
+  'media/images/robin.jpg',
+  'media/images/kyousuke.jpg',
+  'media/images/electricblanket.jpg',
+  'media/images/Truekupatester.jpg',
 ]
 
 const PHRASES = [
   'Tiktok tysiaczek  ',
   'Dzieki ci za te slowa o o o o o o o o o o o',
-  'Tiktok befalberobalinigoat',
+  'Tiktok aluni.prawdziwy',
   'Gari Gari Gari Gari Gari Gari Gari Gari Gari Gari Gari',
   'Star244Star244Star244Star244Star244Star244Star244',
-  'NOWY ALBUM ENCORE TOKIO hOTEL',
-  '33333333333333333333',
+  'WILL YOU STAND THE PAINN WHEN IM BY YOUR SIDE',
+  'WIEM ALE NIE WIEM',
   'sybysapisybysapisybysapisybysapi'
 ]
 
