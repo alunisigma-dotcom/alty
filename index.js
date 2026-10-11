@@ -75,7 +75,10 @@ const VIDEOS = [
   'media/videos/gratulacje.mp4', //added by @GameShoot8050
   'media/videos/puddi.mp4', //added by @MariaWasNotAvailable
   'media/videos/speed.mp4', //added by @Aluni
-  'media/videos/aluniasz.mp4'
+  'media/videos/aluniasz.mp4',
+  'media/videos/6am.mp4',
+  'media/videos/troszkegłośno.mp4',
+  'media/videos/ahhh.mp4'
 ]
 
 const FILE_DOWNLOADS = [
