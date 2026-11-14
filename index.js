@@ -185,15 +185,8 @@ const isParentWindow = !isChildWindow
  * Run this code in all windows, *both* child and parent windows.
  */
 
-init()
-
-/*
- * Use `window.opener` to detect if this window was opened by another window, which
- * will be its parent. The `window.opener` variable is a reference to the parent
- * window.
- */
-if (isChildWindow) initChildWindow()
-else initParentWindow()
+// Stary automatyczny start wyłączony.
+// Efekty ALTY uruchamiamy po kliknięciu przycisku.
 
 /**
  * Initialization code for *both* parent and child windows.
@@ -1173,6 +1166,7 @@ function setupSearchWindow (win) {
 }
 
 // ALTY – otwieranie filmików po kliknięciu przycisku
+
 document.addEventListener("alty:enter", () => {
   const videos = [
     "media/videos/jaczup.mp4",
@@ -1180,16 +1174,25 @@ document.addEventListener("alty:enter", () => {
     "media/videos/rickroll.mp4",
     "media/videos/golomb.mp4",
     "media/videos/mushbox.mp4",
+    "media/videos/clearmax.mp4",
+    "media/videos/freestrona.mp4",
     "media/videos/intro.mp4",
+    "media/videos/szybkakaczka.mp4",
     "media/videos/kaczuszka.mp4",
     "media/videos/gratulacje.mp4",
-    "media/videos/aluniasz.mp4"
+    "media/videos/puddi.mp4",
+    "media/videos/speed.mp4",
+    "media/videos/aluniasz.mp4",
+    "media/videos/6am.mp4",
+    "media/videos/troszkegłośno.mp4",
+    "media/videos/ahhh.mp4"
   ];
 
   const selected = [...videos]
     .sort(() => Math.random() - 0.5)
     .slice(0, 3);
 
+  // Otwieranie osobnych okienek z samymi filmami
   selected.forEach((path, index) => {
     const win = window.open(
       "",
@@ -1199,18 +1202,81 @@ document.addEventListener("alty:enter", () => {
 
     if (!win) return;
 
-    const video = win.document.createElement("video");
-    video.src = new URL(path, document.baseURI).href;
-    video.autoplay = true;
-    video.muted = true;
-    video.loop = true;
-    video.controls = true;
-    video.style.cssText =
-      "width:100%;height:100%;object-fit:contain";
+    const videoUrl = new URL(path, document.baseURI).href;
 
-    win.document.body.style.cssText =
-      "margin:0;background:#171020;overflow:hidden";
-
-    win.document.body.appendChild(video);
+    win.document.open();
+    win.document.write(`
+      <!DOCTYPE html>
+      <html lang="pl">
+      <head>
+        <meta charset="UTF-8">
+        <title>ALTY - filmik</title>
+        <style>
+          html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background: #171020;
+            overflow: hidden;
+          }
+          video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        </style>
+      </head>
+      <body>
+        <video src="${videoUrl}" autoplay muted loop controls playsinline></video>
+      </body>
+      </html>
+    `);
+    win.document.close();
   });
+
+  // Biały ekran z komunikatami
+  setTimeout(() => {
+    const screen = document.createElement("div");
+
+    screen.style.cssText = `
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      background: white;
+      color: black;
+      padding: 25px;
+      box-sizing: border-box;
+      font: 16px Arial, sans-serif;
+      overflow: auto;
+    `;
+
+    screen.innerHTML = `
+      <h2>ALTY - Ładowanie...</h2>
+      <div id="alty-messages"></div>
+    `;
+
+    document.body.appendChild(screen);
+
+    const messages = [
+      "YouTube",
+      "Discord",
+      "Google",
+      "Steam",
+      "Roblox",
+      "Instagram",
+      "Spotify",
+      "ChatGPT"
+    ];
+
+    const list = screen.querySelector("#alty-messages");
+
+    messages.forEach((name, index) => {
+      setTimeout(() => {
+        const line = document.createElement("p");
+        line.textContent = "Wylogowywanie z " + name + "...";
+        list.appendChild(line);
+      }, index * 350);
+    });
+  }, 800);
 });
+

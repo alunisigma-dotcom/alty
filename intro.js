@@ -1,28 +1,12 @@
+button.addEventListener("click", () => {
+  button.disabled = true;
 
-document.addEventListener("DOMContentLoaded", () => {
-  const template = document.querySelector("template");
-  if (!template) return;
+  document.dispatchEvent(new CustomEvent("alty:enter"));
 
-  document.body.appendChild(template.content.cloneNode(true));
+  intro.style.transition = "opacity .8s ease";
+  intro.style.opacity = "0";
 
-  const button = document.getElementById("enterBtn");
-  const intro = document.getElementById("introScreen");
-
-  if (!button || !intro) return;
-
-  button.addEventListener("click", () => {
-    button.disabled = true;
-   
-   document.dispatchEvent(new CustomEvent("alty:enter"));
-
-    // Uruchom okienka bezpośrednio podczas kliknięcia.
-    document.dispatchEvent(new CustomEvent("alty:enter"));
-
-    intro.style.transition = "opacity .8s ease";
-    intro.style.opacity = "0";
-
-    setTimeout(() => {
-      intro.remove();
-    }, 800);
-  });
+  setTimeout(() => {
+    intro.remove();
+  }, 800);
 });
