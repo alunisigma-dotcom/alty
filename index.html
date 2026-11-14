@@ -21,126 +21,51 @@
   <title>Alty</title>
   <meta charset='UTF-8'>
     <style>
-   
-.intro-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  padding: 20px;
-  box-sizing: border-box;
-  background: linear-gradient(135deg, #7055e8, #d94fc2, #529bfa);
-  background-size: 300% 300%;
-  animation: gradientMove 10s ease infinite;
-  color: white;
-  text-align: center;
-}
-
-.intro-card {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 550px;
-  padding: 45px 25px;
-  box-sizing: border-box;
-  background: rgba(255,255,255,.15);
-  border: 1px solid rgba(255,255,255,.3);
-  border-radius: 30px;
-  backdrop-filter: blur(15px);
-  box-shadow: 0 20px 70px #25145a44;
-  animation: cardAppear 1s ease;
-}
-
-.welcome-label {
-  font-size: 12px;
-  letter-spacing: 5px;
-  font-weight: bold;
-}
-
-.alty-title {
-  margin: 25px 0 10px;
-  font-size: clamp(65px, 15vw, 110px);
-  font-weight: 1000;
-  letter-spacing: -5px;
-}
-
-.alty-title span, .cross {
-  color: #ffe77a;
-}
-
-.owners {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  font-weight: 900;
-  font-size: clamp(15px, 4vw, 22px);
-  letter-spacing: 2px;
-}
-
-.intro-description {
-  margin: 30px auto;
-  font-size: 16px;
-  line-height: 1.8;
-}
-
-.enter-button {
-  padding: 18px 30px;
-  border: none;
-  border-radius: 15px;
-  background: white;
-  color: #8050c9;
-  font-size: 15px;
-  font-weight: 900;
-  cursor: pointer;
-  transition: .3s;
-}
-
-.enter-button:hover {
-  transform: translateY(-5px) scale(1.04);
-}
-
-.bottom-text {
-  margin-top: 35px;
-  font-size: 10px;
-  letter-spacing: 2px;
-}
-
-.floating-shape {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255,255,255,.17);
-  animation: floatAround 7s ease-in-out infinite;
-}
-
-.shape1 { width: 180px; height: 180px; top: 8%; left: 8%; }
-.shape2 { width: 100px; height: 100px; bottom: 12%; right: 12%; }
-.shape3 { width: 65px; height: 65px; top: 20%; right: 15%; }
-
-@keyframes gradientMove {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-@keyframes cardAppear {
-  from { opacity: 0; transform: translateY(35px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes floatAround {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-25px); }
-}
-
-@media (max-width: 480px) {
-  .intro-card { padding: 35px 18px; }
-  .intro-description { font-size: 14px; }
-  .enter-button { width: 100%; }
-  .bottom-text { font-size: 8px; }
-}
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'avenir next', avenir,
+        'helvetica neue', helvetica, ubuntu, roboto, noto, 'segoe ui', arial,
+        sans-serif;
+      overflow: hidden;
+    }
+    .hello-message {
+      margin: 40px;
+      text-align: center;
+    }
+    .logout-messages {
+      pointer-events: none;
+      color: red;
+      margin: 40px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      text-shadow: 2px 2px #FFF, 4px 4px 10px #000;
+    }
+    img {
+      width: 300px;
+    }
+    @keyframes blurslowly {
+      0% {
+        filter: none;
+      }
+      92% {
+        filter: blur(0);
+      }
+      96% {
+        filter: blur(1px);
+      }
+      100% {
+        filter: blur(0);
+      }
+    }
+    body {
+      animation-name: blurslowly;
+      animation-iteration-count: infinite;
+      animation-duration: 15s;
+      animation-play-state: running;
+    }
   </style>
   <link rel="icon" type="image/x-icon" href="media/images/robalini.jpg">
 
@@ -157,42 +82,17 @@
 
 <noscript>WITAMY NA STRONIE alunitysiaczek.pl TZW "Alty"</noscript>
 <template>
-  
-  <div class="intro-screen" id="introScreen">
-    <div class="floating-shape shape1"></div>
-    <div class="floating-shape shape2"></div>
-    <div class="floating-shape shape3"></div>
+  <div class='hello-message'>
+    <h1>Siemanko braciszku!</h1>
+    <h2>Kliknij w tanczacego ludzika</h2>
+    <h3>(Aluni i Tysiaczek polecaja kliknac :3 )</h3>
 
-    <div class="intro-card">
-      <div class="welcome-label">✦ OFICJALNA STRONA ✦</div>
-      <h1 class="alty-title">ALTY<span>!</span></h1>
-
-      <div class="owners">
-        <span>ALUNI</span>
-        <span class="cross">×</span>
-        <span>TYSIACZEK</span>
-      </div>
-
-      <p class="intro-description">
-        Dobrze, że jesteś! 👋
-        <br>
-        Rozejrzyj się i odkryj, co dla Ciebie przygotowaliśmy.
-      </p>
-
-    <button type="button" id="enterBtn" class="enter-button">
-      NO TO WBIJAMY! 🚀
-</button>
-      <div class="bottom-text">
-        MADE BY ALUNI & TYSIACZEK
-      </div>
-    </div>
+    <img src='media/images/robalini.gif' alt='Robalini' />
   </div>
-  <div class="logout-messages"></div>
-
+  <div class='logout-messages'></div>
 </template>
 
-<script src="intro.js"></script>
-<script src="index.js"></script>
+<script src='index.js'></script>   
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6S5388LRGM"></script>
@@ -200,6 +100,7 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+
   gtag('config', 'G-6S5388LRGM');
 </script>
 
