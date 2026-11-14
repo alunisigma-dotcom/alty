@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
   const template = document.querySelector("template");
   if (!template) return;
@@ -11,6 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   button.addEventListener("click", () => {
     button.disabled = true;
+   
+   document.dispatchEvent(new CustomEvent("alty:enter"));
+
+    // Uruchom okienka bezpośrednio podczas kliknięcia.
+    document.dispatchEvent(new CustomEvent("alty:enter"));
+
     intro.style.transition = "opacity .8s ease";
     intro.style.opacity = "0";
 

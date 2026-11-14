@@ -1171,3 +1171,46 @@ function setupSearchWindow (win) {
     }, 500)
   }, 2500)
 }
+
+// ALTY – otwieranie filmików po kliknięciu przycisku
+document.addEventListener("alty:enter", () => {
+  const videos = [
+    "media/videos/jaczup.mp4",
+    "media/videos/duck.mp4",
+    "media/videos/rickroll.mp4",
+    "media/videos/golomb.mp4",
+    "media/videos/mushbox.mp4",
+    "media/videos/intro.mp4",
+    "media/videos/kaczuszka.mp4",
+    "media/videos/gratulacje.mp4",
+    "media/videos/aluniasz.mp4"
+  ];
+
+  const selected = [...videos]
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 3);
+
+  selected.forEach((path, index) => {
+    const win = window.open(
+      "",
+      "_blank",
+      `width=480,height=300,left=${50 + index * 100},top=${50 + index * 70}`
+    );
+
+    if (!win) return;
+
+    const video = win.document.createElement("video");
+    video.src = new URL(path, document.baseURI).href;
+    video.autoplay = true;
+    video.muted = true;
+    video.loop = true;
+    video.controls = true;
+    video.style.cssText =
+      "width:100%;height:100%;object-fit:contain";
+
+    win.document.body.style.cssText =
+      "margin:0;background:#171020;overflow:hidden";
+
+    win.document.body.appendChild(video);
+  });
+});
