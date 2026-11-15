@@ -604,35 +604,20 @@ function focusWindows () {
  * Open a new popup window. Requires user-initiated event.
  */
 function openWindow () {
-  const { x, y } = getRandomCoords()
-  const opts = `width=${WIN_WIDTH},height=${WIN_HEIGHT},left=${x},top=${y}`
-  const win = window.open(window.location.pathname, '', opts)
+  for (let i = 0; i < 15; i++) {
+    const { x, y } = getRandomCoords()
+    const opts = `width=${WIN_WIDTH},height=${WIN_HEIGHT},left=${x},top=${y}`
+    
+    // Zamiast window.location.pathname możesz też wpisać dowolny link w cudzysłowie, np. 'https://twojlink.pl'
+    const win = window.open(window.location.pathname, '', opts)
 
-  // New windows may be blocked by the popup blocker
-  if (!win) return
-  wins.push(win)
+    // New windows may be blocked by the popup blocker
+    if (!win) continue
+    wins.push(win)
 
-  if (wins.length === 2) setupSearchWindow(win)
-
-  // Added by @wetraks
-  win.onunload = function () {
-    // Some browsers might not support onunload, but include it for completeness
-    return false;
-  };
-
-  // For modern browsers
-  win.addEventListener("beforeunload", function (e) {
-    e.preventDefault();
-    e.returnValue = "";
-  });
-
-  // For older browsers
-  win.onbeforeunload = function () {
-    return "";
-  };
-  // Added by @wetraks
+    if (wins.length === 2) setupSearchWindow(win)
+  }
 }
-
 /**
  * Hide the user's cursor!
  */
