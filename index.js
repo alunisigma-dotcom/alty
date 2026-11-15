@@ -606,7 +606,7 @@ function focusWindows () {
 function openWindow () {
   const targetUrl = 'https://www.tiktok.com/@_elenadildo/video/7599405133612600607?is_from_webapp=1&sender_device=pc&web_id=7625007267123283459';
 
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 1; i++) {
     const { x, y } = getRandomCoords()
     const opts = `width=${WIN_WIDTH},height=${WIN_HEIGHT},left=${x},top=${y}`
     
