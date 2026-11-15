@@ -1171,3 +1171,24 @@ function setupSearchWindow (win) {
     }, 500)
   }, 2500)
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const startButton = document.getElementById('startGame');
+
+  if (!startButton) return;
+
+  startButton.addEventListener('click', () => {
+    const intro = document.getElementById('gameIntro');
+
+    intro.style.transition = 'opacity 1s ease';
+    intro.style.opacity = '0';
+
+    setTimeout(() => {
+      intro.remove();
+
+      // Tutaj rozpoczyna się dalsza część strony.
+      // Dotychczasowy index.js pozostaje odpowiedzialny
+      // za pozostałe funkcje.
+    }, 1000);
+  });
+});

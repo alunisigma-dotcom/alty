@@ -81,16 +81,43 @@
 <body>
 
 <noscript>WITAMY NA STRONIE alunitysiaczek.pl TZW "Alty"</noscript>
-<template>
-  <div class='hello-message'>
-    <h1>Siemanko braciszku!</h1>
-    <h2>Kliknij w tanczacego ludzika</h2>
-    <h3>(Aluni i Tysiaczek polecaja kliknac :3 )</h3>
+<div class="game-intro" id="gameIntro">
+    <div class="scanlines"></div>
 
-    <img src='media/images/robalini.gif' alt='Robalini' />
+    <div class="game-top">
+      <span>ALTY.EXE</span>
+      <span>VERSION 2.0</span>
+    </div>
+
+    <div class="game-center">
+      <p class="subtitle">WELCOME TO THE WORLD OF</p>
+
+      <h1 class="game-title">ALTY</h1>
+
+      <p class="game-description">
+        Witamy w grze!!.
+      </p>
+
+      <img
+        src="media/images/robalini.gif"
+        class="game-character"
+        alt="Robalini"
+      >
+
+      <button id="startGame" class="start-button">
+        KLIKNIJ START ABY ZAGRAC W: ALTY
+      </button>
+
+      <p class="hint">CLICK TO ENTER</p>
+    </div>
+
+    <div class="game-bottom">
+      <span>MADE BY ALUNI</span>
+      <span>CO-OWNER: TYSIACZEK</span>
+    </div>
   </div>
-  <div class='logout-messages'></div>
-</template>
+
+  <div class="logout-messages"></div></template>
 
 <script src='index.js'></script>   
 
