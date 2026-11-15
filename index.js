@@ -1192,3 +1192,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1000);
   });
 });
+
+window.addEventListener('message', function(event) {
+  if (event.origin !== window.location.origin) return;
+
+  if (event.data?.type === 'ALTY_INTRO_DONE') {
+    const intro = document.getElementById('intro-container');
+
+    if (intro) {
+      intro.remove();
+    }
+  }
+});
