@@ -1153,13 +1153,6 @@ function getRandomCoords () {
 /**
  * Get a random element from a given array, `arr`.
  */
-function getRandomArrayEntry (arr) {
-  return arr[Math.floor(Math.random() * arr.length)]
-}
-
-/** 
- * Automates a series of Google searches in a browser window, moving the window randomly between searches. - Added by @MARECKIyt
- */
 function setupSearchWindow (win) {
   if (!win) return
   win.window.location = 'https://www.google.com/search?q=' + encodeURIComponent(SEARCHES[0])
