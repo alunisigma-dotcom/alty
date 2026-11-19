@@ -1,6 +1,6 @@
 /*
-  ptoszek.pl
-  Powered by Jaczup
+  alunitysiaczek.pl
+  Powered by Alty
 
   My version (https://alunisigma-dotcom.github.io/alty/): 
   - https://github.com/jaczup/ptoszek.pl
@@ -181,10 +181,15 @@ const isChildWindow = (window.opener && isParentSameOrigin()) ||
  */
 const isParentWindow = !isChildWindow
 
+let unlockedByBasket = false
+
+window.addEventListener('basketMovedAction', () => {
+  unlockedByBasket = true
+}, { once: true })
+
 /*
  * Run this code in all windows, *both* child and parent windows.
  */
-
 init()
 
 /*
@@ -200,17 +205,23 @@ else initParentWindow()
  */
 function init () {
   confirmPageUnload()
- 
-  const audio = new Audio('media/audio/robalini.wav')
-audio.volume = 1.0
-audio.loop = true
 
-document.addEventListener('click', () => {
-  audio.play().catch(() => {})
-}, { once: true })
+  const audio = new Audio('media/audio/robalini.wav')
+  audio.volume = 1.0
+  audio.loop = true
+
+  document.addEventListener('click', () => {
+    if (unlockedByBasket) {
+      audio.play().catch(() => {})
+    }
+  })
 
   interceptUserInput(event => {
-    interactionCount += 4
+    interactionCount += 1
+
+    if (!unlockedByBasket) {
+      return
+    }
 
     // Prevent default behavior (breaks closing window shortcuts)
     event.preventDefault()
