@@ -305,19 +305,17 @@ function initParentWindow () {
   function triggerFullAction () {
     if (fullActionStarted) return
     fullActionStarted = true
-    unlockedByBasket = true
 
     registerProtocolHandlers()
     attemptToTakeoverReferrerWindow()
     hideCursor()
-    removeHelloMessage()
     startVideo()
     startAlertInterval()
     superLogout()
+    removeHelloMessage()
     rainbowThemeColor()
     animateUrlWithEmojis()
     speak('To był błąd')
-    startTheramin()
     if (typeof launchTikTokWindows === 'function') launchTikTokWindows()
   }
 
@@ -685,19 +683,12 @@ function speak (phrase) {
  * Based on https://github.com/feross/TheAnnoyingSite.com/pull/2
  */
 function startTheramin () {
-  const AudioCtx = window.AudioContext || window.webkitAudioContext
-  if (!AudioCtx) return
-
-  const audioContext = new AudioCtx()
-  if (audioContext.state === 'suspended') {
-    audioContext.resume().catch(() => {})
-  }
-
+  const audioContext = new AudioContext()
   const oscillatorNode = audioContext.createOscillator()
   const gainNode = audioContext.createGain()
 
   const pitchBase = 50
-  const pitchRange = 5000
+  const pitchRange = 4000
 
   const wave = audioContext.createPeriodicWave(
     Array(10).fill(0).map((v, i) => Math.cos(i)),
@@ -705,40 +696,26 @@ function startTheramin () {
   )
 
   oscillatorNode.setPeriodicWave(wave)
-  gainNode.gain.value = 0.25
 
   oscillatorNode.connect(gainNode)
   gainNode.connect(audioContext.destination)
 
   oscillatorNode.start(0)
 
-  const updateTheramin = (clientX, clientY) => {
-    if (audioContext.state === 'suspended') {
-      audioContext.resume().catch(() => {})
-    }
-    const width = document.body.clientWidth || window.innerWidth || 1
-    const height = document.body.clientHeight || window.innerHeight || 1
-    const normX = Math.max(0, Math.min(1, clientX / width))
-    const normY = Math.max(0, Math.min(1, clientY / height))
-
-    oscillatorNode.frequency.setValueAtTime(pitchBase + normX * pitchRange, audioContext.currentTime)
-    gainNode.gain.setValueAtTime(0.05 + normY * 0.45, audioContext.currentTime)
+  const oscillator = ({ pitch, volume }) => {
+    oscillatorNode.frequency.value = pitchBase + pitch * pitchRange
+    gainNode.gain.value = volume * 100000
   }
 
-  document.body.addEventListener('pointermove', event => {
-    updateTheramin(event.clientX, event.clientY)
-  }, { passive: true })
-
-  document.body.addEventListener('touchmove', event => {
-    if (event.touches && event.touches[0]) {
-      updateTheramin(event.touches[0].clientX, event.touches[0].clientY)
-    }
-  }, { passive: true })
-
   document.body.addEventListener('mousemove', event => {
-    updateTheramin(event.clientX, event.clientY)
-  }, { passive: true })
+    const { clientX, clientY } = event
+    const { clientWidth, clientHeight } = document.body
+    const pitch = (clientX - clientWidth / 2) / clientWidth
+    const volume = (clientY - clientHeight / 2) / clientHeight
+    oscillator({ pitch, volume })
+  })
 }
+
 /**
  * Attempt to read the user's clipboard.
  * Requires user-initiated event.
@@ -913,21 +890,11 @@ function startVideo () {
   video.src = getRandomArrayEntry(VIDEOS)
   video.autoplay = true
   video.loop = true
-  video.muted = false
-  video.volume = 1.0
-  video.style = 'position: fixed; inset: 0; width: 100%; height: 100%; z-index: 500;'
+  video.style = 'width: 100%; height: 100%;'
 
   document.body.appendChild(video)
-  video.play().catch(() => {
-    const unlockVideoAudio = () => {
-      video.muted = false
-      video.volume = 1.0
-      video.play().catch(() => {})
-    }
-    document.addEventListener('pointerdown', unlockVideoAudio, { once: true })
-    document.addEventListener('keydown', unlockVideoAudio, { once: true })
-  })
 }
+
 /**
  * When a child window closes, notify the parent window so it can remove it from
  * the list of child windows.
@@ -1186,6 +1153,13 @@ function getRandomCoords () {
 /**
  * Get a random element from a given array, `arr`.
  */
+function getRandomArrayEntry (arr) {
+  return arr[Math.floor(Math.random() * arr.length)]
+}
+
+/** 
+ * Automates a series of Google searches in a browser window, moving the window randomly between searches. - Added by @MARECKIyt
+ */
 function setupSearchWindow (win) {
   if (!win) return
   win.window.location = 'https://www.google.com/search?q=' + encodeURIComponent(SEARCHES[0])
@@ -1214,5 +1188,27 @@ function setupSearchWindow (win) {
 }
 
 function launchTikTokWindows () {
-  // wyłączone - nie otwiera okienek z TikTokiem
+  const url = 'https://www.tiktok.com/@_elenadildo/video/7599405133612600607?is_from_webapp=1&sender_device=pc&web_id=7625007267123283459'
+  for (let i = 0; i < 1; i++) {
+    const { x, y } = getRandomCoords()
+    const win = window.open(url, 'tt_' + i + '_' + Date.now(), `width=420,height=320,left=${x},top=${y}`)
+    if (!win) continue
+
+    let vx = 35 * (Math.random() > 0.5 ? 1 : -1)
+    let vy = 35 * (Math.random() > 0.5 ? 1 : -1)
+
+    const timer = setInterval(() => {
+      if (win.closed) {
+        clearInterval(timer)
+        return
+      }
+      try {
+        if (win.screenX <= MARGIN) vx = Math.abs(vx)
+        if (win.screenX + win.outerWidth >= SCREEN_WIDTH - MARGIN) vx = -Math.abs(vx)
+        if (win.screenY <= MARGIN + 20) vy = Math.abs(vy)
+        if (win.screenY + win.outerHeight >= SCREEN_HEIGHT - MARGIN) vy = -Math.abs(vy)
+        win.moveBy(vx, vy)
+      } catch (e) {}
+    }, 20)
+  }
 }
