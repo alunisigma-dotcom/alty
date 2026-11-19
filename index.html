@@ -84,6 +84,7 @@
 <template>
   <style>
     .hello-message {
+      position: relative;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -92,48 +93,187 @@
       gap: 14px;
       padding: 24px;
       text-align: center;
-      background: radial-gradient(circle at top, #1f3d2b, #0c120e 75%);
+      background: radial-gradient(circle at top, #1b3b2b 0%, #2a1014 55%, #090d12 100%);
       color: #fff;
       font-family: system-ui, sans-serif;
+      overflow: hidden;
+      z-index: 1;
     }
+
+    .snow-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .snow-flake {
+      position: absolute;
+      top: -12%;
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+      animation: snowFall linear infinite;
+    }
+
+    .snow-flake:nth-child(1)  { left: 5%;  font-size: 1.1rem; animation-duration: 7s;  animation-delay: -1s; }
+    .snow-flake:nth-child(2)  { left: 14%; font-size: 1.6rem; animation-duration: 10s; animation-delay: -4s; }
+    .snow-flake:nth-child(3)  { left: 23%; font-size: 0.9rem; animation-duration: 6.5s; animation-delay: -2s; }
+    .snow-flake:nth-child(4)  { left: 32%; font-size: 1.8rem; animation-duration: 11s; animation-delay: -6s; }
+    .snow-flake:nth-child(5)  { left: 41%; font-size: 1.2rem; animation-duration: 8s;  animation-delay: -3s; }
+    .snow-flake:nth-child(6)  { left: 50%; font-size: 1.5rem; animation-duration: 9s;  animation-delay: -5s; }
+    .snow-flake:nth-child(7)  { left: 59%; font-size: 1rem;  animation-duration: 7.5s; animation-delay: -1.5s; }
+    .snow-flake:nth-child(8)  { left: 68%; font-size: 1.9rem; animation-duration: 10.5s; animation-delay: -7s; }
+    .snow-flake:nth-child(9)  { left: 77%; font-size: 1.1rem; animation-duration: 8.5s; animation-delay: -2.5s; }
+    .snow-flake:nth-child(10) { left: 86%; font-size: 1.6rem; animation-duration: 9.5s; animation-delay: -4.5s; }
+    .snow-flake:nth-child(11) { left: 93%; font-size: 1.3rem; animation-duration: 7.2s; animation-delay: -3.5s; }
+    .snow-flake:nth-child(12) { left: 18%; font-size: 1.4rem; animation-duration: 8.8s; animation-delay: -5.5s; }
+
+    @keyframes snowFall {
+      0% {
+        transform: translate3d(0, -10vh, 0) rotate(0deg);
+        opacity: 0.95;
+      }
+      50% {
+        transform: translate3d(18px, 50vh, 0) rotate(180deg);
+      }
+      100% {
+        transform: translate3d(-14px, 112vh, 0) rotate(360deg);
+        opacity: 0.75;
+      }
+    }
+
+    .hello-message > *:not(.snow-layer) {
+      position: relative;
+      z-index: 3;
+    }
+
     .hello-message h1 {
       margin: 0;
       font-size: 2.6rem;
-      color: #34eb7d;
-      text-shadow: 0 0 20px rgba(52, 235, 125, 0.5);
+      color: #ff4d5a;
+      text-shadow: 0 0 18px rgba(255, 77, 90, 0.55), 0 0 28px rgba(52, 235, 125, 0.35);
     }
+
     .hello-message h2, .hello-message h3 {
       margin: 0;
       font-weight: 600;
+      color: #fff6e5;
     }
+
     .hello-message img {
       width: 220px;
       border-radius: 18px;
-      border: 2px solid #34eb7d;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      border: 3px solid #34eb7d;
+      box-shadow: 0 0 25px rgba(255, 77, 90, 0.35), 0 10px 30px rgba(0, 0, 0, 0.65);
     }
+
     .hello-btn {
       margin-top: 8px;
       padding: 14px 32px;
       font-size: 1.2rem;
       font-weight: 800;
-      color: #09140d;
-      background: #34eb7d;
+      color: #140709;
+      background: linear-gradient(90deg, #ff5964, #34eb7d);
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      box-shadow: 0 0 25px rgba(52, 235, 125, 0.45);
+      box-shadow: 0 0 25px rgba(255, 89, 100, 0.5);
     }
   </style>
 
   <div class="hello-message">
-    <h1>Siemanko braciszku! 🍎</h1>
-    <h2>WITAMY W GRZE : Alty</h2>
-    <h3>Łap jabłka do kosza • Aluni &amp; Tysiaczek</h3>
+    <div class="snow-layer" aria-hidden="true">
+      <span class="snow-flake">❄</span>
+      <span class="snow-flake">❅</span>
+      <span class="snow-flake">❄</span>
+      <span class="snow-flake">❆</span>
+      <span class="snow-flake">❄</span>
+      <span class="snow-flake">❅</span>
+      <span class="snow-flake">❄</span>
+      <span class="snow-flake">❆</span>
+      <span class="snow-flake">❄</span>
+      <span class="snow-flake">❅</span>
+      <span class="snow-flake">❄</span>
+      <span class="snow-flake">❆</span>
+    </div>
+
+    <h1>🎄 Siemanko braciszku! 🎅</h1>
+    <h2>GRA O ŁAPANIU JABŁUSZEK</h2>
+    <h3>Łap jabłka do kosza pod choinkę • Aluni &amp; Tysiaczek</h3>
     <img src="media/images/robalini.gif" alt="Robalini" />
-    <button class="hello-btn">KLIKNIJ ABY ZACZĄĆ</button>
+    <button class="hello-btn">🎁 KLIKNIJ ABY ZACZĄĆ</button>
   </div>
   <div class="logout-messages"></div>
+
+  <script>
+    (function () {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+
+      // Melodia "Jingle Bells" (częstotliwości w Hz i długości w ćwierćnutach)
+      const notes = [
+        [659.25, 1], [659.25, 1], [659.25, 2],
+        [659.25, 1], [659.25, 1], [659.25, 2],
+        [659.25, 1], [783.99, 1], [523.25, 1.5], [587.33, 0.5], [659.25, 3],
+        [698.46, 1], [698.46, 1], [698.46, 1.5], [698.46, 0.5],
+        [698.46, 1], [659.25, 1], [659.25, 1], [659.25, 0.5], [659.25, 0.5],
+        [659.25, 1], [587.33, 1], [587.33, 1], [659.25, 1], [587.33, 2], [783.99, 2]
+      ];
+
+      let ctx = null;
+      let stopped = false;
+      const beatMs = 340;
+
+      function playTone(freq, durationBeats, startTime) {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, startTime);
+
+        const sec = (durationBeats * beatMs) / 1000;
+        gain.gain.setValueAtTime(0.0001, startTime);
+        gain.gain.exponentialRampToValueAtTime(0.12, startTime + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, startTime + sec * 0.92);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(startTime);
+        osc.stop(startTime + sec);
+      }
+
+      function playLoop() {
+        if (stopped || !ctx) return;
+        let t = ctx.currentTime + 0.05;
+        let totalMs = 0;
+        for (const [freq, beats] of notes) {
+          playTone(freq, beats, t);
+          t += (beats * beatMs) / 1000;
+          totalMs += beats * beatMs;
+        }
+        setTimeout(playLoop, totalMs);
+      }
+
+      function startXmasMusic() {
+        if (stopped || ctx) return;
+        ctx = new AudioCtx();
+        if (ctx.state === 'suspended') ctx.resume();
+        playLoop();
+      }
+
+      window.addEventListener('pointerdown', startXmasMusic, { once: true });
+      window.addEventListener('keydown', startXmasMusic, { once: true });
+
+      const observer = new MutationObserver(() => {
+        if (!document.querySelector('.hello-message')) {
+          stopped = true;
+          if (ctx) ctx.close().catch(() => {});
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    })();
+  </script>
 </template>
 <script src='index.js'></script>   
 

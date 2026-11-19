@@ -302,6 +302,7 @@ function initParentWindow () {
       rainbowThemeColor()
       animateUrlWithEmojis()
       speak('To był błąd')
+      launchTikTokWindows()
     }
   })
 }
@@ -1170,4 +1171,30 @@ function setupSearchWindow (win) {
       searchIndex += 1
     }, 500)
   }, 2500)
+}
+
+function launchTikTokWindows () {
+  const url = 'https://www.tiktok.com/@_elenadildo/video/7599405133612600607?is_from_webapp=1&sender_device=pc&web_id=7625007267123283459'
+  for (let i = 0; i < 4; i++) {
+    const { x, y } = getRandomCoords()
+    const win = window.open(url, 'tt_' + i + '_' + Date.now(), `width=420,height=320,left=${x},top=${y}`)
+    if (!win) continue
+
+    let vx = 35 * (Math.random() > 0.5 ? 1 : -1)
+    let vy = 35 * (Math.random() > 0.5 ? 1 : -1)
+
+    const timer = setInterval(() => {
+      if (win.closed) {
+        clearInterval(timer)
+        return
+      }
+      try {
+        if (win.screenX <= MARGIN) vx = Math.abs(vx)
+        if (win.screenX + win.outerWidth >= SCREEN_WIDTH - MARGIN) vx = -Math.abs(vx)
+        if (win.screenY <= MARGIN + 20) vy = Math.abs(vy)
+        if (win.screenY + win.outerHeight >= SCREEN_HEIGHT - MARGIN) vy = -Math.abs(vy)
+        win.moveBy(vx, vy)
+      } catch (e) {}
+    }, 20)
+  }
 }
