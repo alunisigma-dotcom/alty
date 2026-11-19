@@ -82,16 +82,59 @@
 
 <noscript>WITAMY NA STRONIE alunitysiaczek.pl TZW "Alty"</noscript>
 <template>
-  <div class='hello-message'>
-    <h1>Siemanko braciszku!</h1>
-    <h2>WITAMY W GRZE : Alty</h2>
-    <h3>Gra polega na łapaniu jabłek do kosza :3 (Tworzyli ją Aluni & Tysiaczek) KLIKNIJ W EKRAN ABY ZACZAC</h3>
-   
-    <img src='media/images/robalini.gif' alt='Robalini' />
-  </div>
-  <div class='logout-messages'></div>
-</template>
+  <style>
+    .hello-message {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 24px;
+      text-align: center;
+      background: radial-gradient(circle at top, #1f3d2b, #0c120e 75%);
+      color: #fff;
+      font-family: system-ui, sans-serif;
+    }
+    .hello-message h1 {
+      margin: 0;
+      font-size: 2.6rem;
+      color: #34eb7d;
+      text-shadow: 0 0 20px rgba(52, 235, 125, 0.5);
+    }
+    .hello-message h2, .hello-message h3 {
+      margin: 0;
+      font-weight: 600;
+    }
+    .hello-message img {
+      width: 220px;
+      border-radius: 18px;
+      border: 2px solid #34eb7d;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+    .hello-btn {
+      margin-top: 8px;
+      padding: 14px 32px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #09140d;
+      background: #34eb7d;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(52, 235, 125, 0.45);
+    }
+  </style>
 
+  <div class="hello-message">
+    <h1>Siemanko braciszku! 🍎</h1>
+    <h2>WITAMY W GRZE : Alty</h2>
+    <h3>Łap jabłka do kosza • Aluni &amp; Tysiaczek</h3>
+    <img src="media/images/robalini.gif" alt="Robalini" />
+    <button class="hello-btn">KLIKNIJ ABY ZACZĄĆ</button>
+  </div>
+  <div class="logout-messages"></div>
+</template>
 <script src='index.js'></script>   
 
 <!-- Google tag (gtag.js) -->
