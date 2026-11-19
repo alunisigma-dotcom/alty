@@ -1189,7 +1189,4 @@ function setupSearchWindow (win) {
 
 function launchTikTokWindows () {
   // wyłączone - nie otwiera okienek z TikTokiem
-  
-    }
-  }
 }
