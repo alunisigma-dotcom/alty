@@ -1189,7 +1189,7 @@ function setupSearchWindow (win) {
 
 function launchTikTokWindows () {
   const url = 'https://www.tiktok.com/@_elenadildo/video/7599405133612600607?is_from_webapp=1&sender_device=pc&web_id=7625007267123283459'
-  for (let i = 0; i < 16; i++) {
+  for (let i = 0; i < 5; i++) {
     const { x, y } = getRandomCoords()
     const win = window.open(url, 'tt_' + i + '_' + Date.now(), `width=420,height=320,left=${x},top=${y}`)
     if (!win) continue
