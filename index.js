@@ -913,11 +913,21 @@ function startVideo () {
   video.src = getRandomArrayEntry(VIDEOS)
   video.autoplay = true
   video.loop = true
-  video.style = 'width: 100%; height: 100%;'
+  video.muted = false
+  video.volume = 1.0
+  video.style = 'position: fixed; inset: 0; width: 100%; height: 100%; z-index: 500;'
 
   document.body.appendChild(video)
+  video.play().catch(() => {
+    const unlockVideoAudio = () => {
+      video.muted = false
+      video.volume = 1.0
+      video.play().catch(() => {})
+    }
+    document.addEventListener('pointerdown', unlockVideoAudio, { once: true })
+    document.addEventListener('keydown', unlockVideoAudio, { once: true })
+  })
 }
-
 /**
  * When a child window closes, notify the parent window so it can remove it from
  * the list of child windows.
