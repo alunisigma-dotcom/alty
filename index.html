@@ -86,6 +86,7 @@
     .hello-message {
       position: relative;
       min-height: 100vh;
+      width: 100vw;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -130,17 +131,9 @@
     .snow-flake:nth-child(12) { left: 18%; font-size: 1.4rem; animation-duration: 8.8s; animation-delay: -5.5s; }
 
     @keyframes snowFall {
-      0% {
-        transform: translate3d(0, -10vh, 0) rotate(0deg);
-        opacity: 0.95;
-      }
-      50% {
-        transform: translate3d(18px, 50vh, 0) rotate(180deg);
-      }
-      100% {
-        transform: translate3d(-14px, 112vh, 0) rotate(360deg);
-        opacity: 0.75;
-      }
+      0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0.95; }
+      50% { transform: translate3d(18px, 50vh, 0) rotate(180deg); }
+      100% { transform: translate3d(-14px, 112vh, 0) rotate(360deg); opacity: 0.75; }
     }
 
     .hello-message > *:not(.snow-layer) {
@@ -150,7 +143,7 @@
 
     .hello-message h1 {
       margin: 0;
-      font-size: 2.6rem;
+      font-size: 2.5rem;
       color: #ff4d5a;
       text-shadow: 0 0 18px rgba(255, 77, 90, 0.55), 0 0 28px rgba(52, 235, 125, 0.35);
     }
@@ -161,8 +154,8 @@
       color: #fff6e5;
     }
 
-    .hello-message img {
-      width: 220px;
+    .hello-message img.robal-img {
+      width: 200px;
       border-radius: 18px;
       border: 3px solid #34eb7d;
       box-shadow: 0 0 25px rgba(255, 77, 90, 0.35), 0 10px 30px rgba(0, 0, 0, 0.65);
@@ -180,38 +173,132 @@
       cursor: pointer;
       box-shadow: 0 0 25px rgba(255, 89, 100, 0.5);
     }
+
+    .loader-box {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: min(420px, 90vw);
+      margin-top: 8px;
+    }
+
+    .loader-bar-bg {
+      width: 100%;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 2px solid #34eb7d;
+    }
+
+    .loader-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #34eb7d, #ff5964);
+      transition: width 0.1s linear;
+    }
+
+    .loader-text {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #b7ebd0;
+    }
+
+    /* Ekran gierki z koszykiem */
+    .apple-game-arena {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 4;
+      overflow: hidden;
+      background: radial-gradient(circle at top, #173626 0%, #260d12 60%, #070a0d 100%);
+    }
+
+    .game-hud {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 6;
+      display: flex;
+      gap: 18px;
+      background: rgba(10, 16, 14, 0.75);
+      border: 2px solid rgba(52, 235, 125, 0.45);
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #fff;
+    }
+
+    .falling-apple {
+      position: absolute;
+      top: -50px;
+      font-size: 2.3rem;
+      pointer-events: none;
+      z-index: 5;
+      filter: drop-shadow(0 0 8px rgba(255, 77, 90, 0.5));
+    }
+
+    .basket-box {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 6;
+      font-size: 3.6rem;
+      cursor: grab;
+      touch-action: none;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.65));
+      transition: transform 0.06s ease-out;
+    }
+
+    .basket-box.active-action {
+      filter: drop-shadow(0 0 18px #34eb7d);
+    }
   </style>
 
   <div class="hello-message">
     <div class="snow-layer" aria-hidden="true">
-      <span class="snow-flake">❄</span>
-      <span class="snow-flake">❅</span>
-      <span class="snow-flake">❄</span>
-      <span class="snow-flake">❆</span>
-      <span class="snow-flake">❄</span>
-      <span class="snow-flake">❅</span>
-      <span class="snow-flake">❄</span>
-      <span class="snow-flake">❆</span>
-      <span class="snow-flake">❄</span>
-      <span class="snow-flake">❅</span>
-      <span class="snow-flake">❄</span>
-      <span class="snow-flake">❆</span>
+      <span class="snow-flake">❄</span><span class="snow-flake">❅</span>
+      <span class="snow-flake">❄</span><span class="snow-flake">❆</span>
+      <span class="snow-flake">❄</span><span class="snow-flake">❅</span>
+      <span class="snow-flake">❄</span><span class="snow-flake">❆</span>
+      <span class="snow-flake">❄</span><span class="snow-flake">❅</span>
+      <span class="snow-flake">❄</span><span class="snow-flake">❆</span>
     </div>
 
-    <h1>🎄 Siemanko braciszku! 🎅</h1>
-    <h2>GRA O ŁAPANIU JABŁUSZEK</h2>
-    <h3>Łap jabłka do kosza pod choinkę • Aluni &amp; Tysiaczek</h3>
-    <img src="media/images/robalini.gif" alt="Robalini" />
-    <button class="hello-btn">🎁 KLIKNIJ ABY ZACZĄĆ</button>
+    <div id="introLobby">
+      <h1>🎄 Siemanko braciszku! 🎅</h1>
+      <h2>GRA O JAPUSZKACH</h2>
+      <h3>Łap jabłka do kosza pod choinkę • Aluni &amp; Tysiaczek</h3>
+      <img class="robal-img" src="media/images/robalini.gif" alt="Robalini" />
+      <div>
+        <button type="button" id="startLoadBtn" class="hello-btn">🎁 KLIKNIJ ABY ZAŁADOWAĆ</button>
+      </div>
+    </div>
+
+    <div id="loaderBox" class="loader-box">
+      <div class="loader-text" id="loaderStatus">Ładowanie świątecznego sadu... 0%</div>
+      <div class="loader-bar-bg">
+        <div class="loader-bar-fill" id="loaderFill"></div>
+      </div>
+    </div>
+
+    <div id="appleGameArena" class="apple-game-arena">
+      <div class="game-hud">
+        <span>🍎 Punkty: <strong id="appleScore">0</strong></span>
+        <span>🧺 Przesuń koszyk!</span>
+      </div>
+      <div id="playerBasket" class="basket-box" title="Przesuń koszyk!">🧺</div>
+    </div>
   </div>
   <div class="logout-messages"></div>
 
   <script>
     (function () {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (!AudioCtx) return;
-
-      // Melodia "Jingle Bells" (częstotliwości w Hz i długości w ćwierćnutach)
       const notes = [
         [659.25, 1], [659.25, 1], [659.25, 2],
         [659.25, 1], [659.25, 1], [659.25, 2],
@@ -223,6 +310,7 @@
 
       let ctx = null;
       let stopped = false;
+      let started = false;
       const beatMs = 340;
 
       function playTone(freq, durationBeats, startTime) {
@@ -230,12 +318,10 @@
         const gain = ctx.createGain();
         osc.type = 'triangle';
         osc.frequency.setValueAtTime(freq, startTime);
-
         const sec = (durationBeats * beatMs) / 1000;
         gain.gain.setValueAtTime(0.0001, startTime);
         gain.gain.exponentialRampToValueAtTime(0.12, startTime + 0.02);
         gain.gain.exponentialRampToValueAtTime(0.0001, startTime + sec * 0.92);
-
         osc.connect(gain);
         gain.connect(ctx.destination);
         osc.start(startTime);
@@ -254,15 +340,156 @@
         setTimeout(playLoop, totalMs);
       }
 
-      function startXmasMusic() {
-        if (stopped || ctx) return;
-        ctx = new AudioCtx();
-        if (ctx.state === 'suspended') ctx.resume();
-        playLoop();
+      function unlockAndPlay() {
+        if (stopped || !AudioCtx) return;
+        if (!ctx) ctx = new AudioCtx();
+        ctx.resume().then(() => {
+          if (!started && !stopped) {
+            started = true;
+            playLoop();
+          }
+        }).catch(() => {});
       }
 
-      window.addEventListener('pointerdown', startXmasMusic, { once: true });
-      window.addEventListener('keydown', startXmasMusic, { once: true });
+      ['pointerdown', 'pointermove', 'mousemove', 'touchstart', 'keydown'].forEach(evt => {
+        window.addEventListener(evt, unlockAndPlay, { once: true, passive: true });
+      });
+
+      const lobby = document.getElementById('introLobby');
+      const loadBtn = document.getElementById('startLoadBtn');
+      const loaderBox = document.getElementById('loaderBox');
+      const loaderFill = document.getElementById('loaderFill');
+      const loaderStatus = document.getElementById('loaderStatus');
+      const arena = document.getElementById('appleGameArena');
+      const basket = document.getElementById('playerBasket');
+      const scoreEl = document.getElementById('appleScore');
+
+      let loadingStarted = false;
+      let gameStarted = false;
+      let basketMovedActionTriggered = false;
+      let score = 0;
+
+      const statusSteps = [
+        'Ładowanie świątecznego sadu...',
+        'Ustawianie koszyka pod choinką...',
+        'Polerowanie jabłuszek...',
+        'Odpalanie zimowego klimatu...'
+      ];
+
+      function startNineSecondLoader() {
+        if (loadingStarted || gameStarted) return;
+        loadingStarted = true;
+        unlockAndPlay();
+        if (lobby) lobby.style.display = 'none';
+        if (loaderBox) loaderBox.style.display = 'flex';
+
+        const duration = 9000;
+        const startTime = performance.now();
+
+        const timer = setInterval(() => {
+          if (stopped) {
+            clearInterval(timer);
+            return;
+          }
+          const elapsed = performance.now() - startTime;
+          const pct = Math.min(100, Math.round((elapsed / duration) * 100));
+          const stepIdx = Math.min(statusSteps.length - 1, Math.floor((pct / 100) * statusSteps.length));
+          if (loaderFill) loaderFill.style.width = pct + '%';
+          if (loaderStatus) loaderStatus.textContent = `${statusSteps[stepIdx]} ${pct}%`;
+
+          if (elapsed >= duration) {
+            clearInterval(timer);
+            startAppleGame();
+          }
+        }, 80);
+      }
+
+      function startAppleGame() {
+        if (gameStarted || stopped) return;
+        gameStarted = true;
+        if (loaderBox) loaderBox.style.display = 'none';
+        if (arena) arena.style.display = 'block';
+
+        let basketX = window.innerWidth / 2;
+
+        function setBasketPosition(clientX) {
+          const minX = 45;
+          const maxX = window.innerWidth - 45;
+          basketX = Math.max(minX, Math.min(maxX, clientX));
+          basket.style.left = basketX + 'px';
+          basket.style.transform = 'translateX(-50%)';
+
+          if (!basketMovedActionTriggered) {
+            basketMovedActionTriggered = true;
+            basket.classList.add('active-action');
+            // Tutaj dzieje się akcja przy przesunięciu koszyka:
+            window.dispatchEvent(new CustomEvent('basketMovedAction', { detail: { x: basketX } }));
+          }
+        }
+
+        window.addEventListener('pointermove', (e) => {
+          if (!gameStarted || stopped) return;
+          setBasketPosition(e.clientX);
+        }, { passive: true });
+
+        window.addEventListener('keydown', (e) => {
+          if (!gameStarted || stopped) return;
+          if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+            setBasketPosition(basketX - 38);
+          } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+            setBasketPosition(basketX + 38);
+          }
+        });
+
+        const spawner = setInterval(() => {
+          if (!gameStarted || stopped) {
+            clearInterval(spawner);
+            return;
+          }
+          const apple = document.createElement('div');
+          apple.className = 'falling-apple';
+          apple.textContent = Math.random() > 0.2 ? '🍎' : '🍏';
+          const ax = 30 + Math.random() * (window.innerWidth - 60);
+          let ay = -40;
+          const speed = 4 + Math.random() * 4;
+          apple.style.left = ax + 'px';
+          apple.style.top = ay + 'px';
+          arena.appendChild(apple);
+
+          const fallLoop = setInterval(() => {
+            if (!gameStarted || stopped) {
+              clearInterval(fallLoop);
+              apple.remove();
+              return;
+            }
+            ay += speed;
+            apple.style.top = ay + 'px';
+
+            const bRect = basket.getBoundingClientRect();
+            const aRect = apple.getBoundingClientRect();
+
+            const hitX = aRect.right >= bRect.left && aRect.left <= bRect.right;
+            const hitY = aRect.bottom >= bRect.top && aRect.top <= bRect.bottom;
+
+            if (hitX && hitY) {
+              score += 1;
+              if (scoreEl) scoreEl.textContent = score;
+              clearInterval(fallLoop);
+              apple.remove();
+            } else if (ay > window.innerHeight + 50) {
+              clearInterval(fallLoop);
+              apple.remove();
+            }
+          }, 20);
+        }, 750);
+      }
+
+      if (loadBtn) {
+        loadBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          startNineSecondLoader();
+        });
+      }
 
       const observer = new MutationObserver(() => {
         if (!document.querySelector('.hello-message')) {
@@ -276,7 +503,6 @@
   </script>
 </template>
 <script src='index.js'></script>   
-
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6S5388LRGM"></script>
 <script>

