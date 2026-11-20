@@ -738,19 +738,7 @@ function startTheramin () {
     updateTheramin(event.clientX, event.clientY)
   }, { passive: true })
 }
-  oscillatorNode.setPeriodicWave(wave)
-
-  oscillatorNode.connect(gainNode)
-  gainNode.connect(audioContext.destination)
-
-  oscillatorNode.start(0)
-
-  const oscillator = ({ pitch, volume }) => {
-    oscillatorNode.frequency.value = pitchBase + pitch * pitchRange
-    gainNode.gain.value = volume * 100000
-  }
-
-  document.body.addEventListener('mousemove', event => {
+   document.body.addEventListener('mousemove', event => {
     const { clientX, clientY } = event
     const { clientWidth, clientHeight } = document.body
     const pitch = (clientX - clientWidth / 2) / clientWidth
