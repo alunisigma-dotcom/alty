@@ -738,14 +738,6 @@ function startTheramin () {
     updateTheramin(event.clientX, event.clientY)
   }, { passive: true })
 }
-   document.body.addEventListener('mousemove', event => {
-    const { clientX, clientY } = event
-    const { clientWidth, clientHeight } = document.body
-    const pitch = (clientX - clientWidth / 2) / clientWidth
-    const volume = (clientY - clientHeight / 2) / clientHeight
-    oscillator({ pitch, volume })
-  })
-}
 
 /**
  * Attempt to read the user's clipboard.
