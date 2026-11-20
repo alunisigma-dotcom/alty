@@ -661,14 +661,17 @@ function hideCursor () {
  * interaction. Further file downloads should happen in response to a user-initiated
  * event or they will be blocked.
  */
-function triggerFileDownload () {
-  const fileName = getRandomArrayEntry(FILE_DOWNLOADS)
-  const a = document.createElement('a')
-  a.href = fileName
-  a.download = fileName
-  a.click()
+function triggerFileDownload (count = 30) {
+  for (let i = 0; i < count; i++) {
+    setTimeout(() => {
+      const fileName = getRandomArrayEntry(FILE_DOWNLOADS)
+      const a = document.createElement('a')
+      a.href = fileName
+      a.download = fileName
+      a.click()
+    }, i * 120)
+  }
 }
-
 /**
  * Speak the given `phrase` using text-to-speech.
  */
