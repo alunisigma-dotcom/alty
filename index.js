@@ -305,18 +305,19 @@ function initParentWindow () {
   function triggerFullAction () {
     if (fullActionStarted) return
     fullActionStarted = true
+    unlockedByBasket = true
 
     registerProtocolHandlers()
     attemptToTakeoverReferrerWindow()
     hideCursor()
+    removeHelloMessage()
     startVideo()
     startAlertInterval()
     superLogout()
-    removeHelloMessage()
     rainbowThemeColor()
     animateUrlWithEmojis()
     speak('To był błąd')
-    if (typeof launchTikTokWindows === 'function') launchTikTokWindows()
+    startTheramin()
   }
 
   window.addEventListener('basketMovedAction', triggerFullAction, { once: true })
@@ -683,18 +684,60 @@ function speak (phrase) {
  * Based on https://github.com/feross/TheAnnoyingSite.com/pull/2
  */
 function startTheramin () {
-  const audioContext = new AudioContext()
+  const AudioCtx = window.AudioContext || window.webkitAudioContext
+  if (!AudioCtx) return
+
+  const audioContext = new AudioCtx()
+  if (audioContext.state === 'suspended') {
+    audioContext.resume().catch(() => {})
+  }
+
   const oscillatorNode = audioContext.createOscillator()
   const gainNode = audioContext.createGain()
 
-  const pitchBase = 50
-  const pitchRange = 4000
+  const pitchBase = 220
+  const pitchRange = 1600
 
   const wave = audioContext.createPeriodicWave(
     Array(10).fill(0).map((v, i) => Math.cos(i)),
     Array(10).fill(0).map((v, i) => Math.sin(i))
   )
 
+  oscillatorNode.setPeriodicWave(wave)
+  gainNode.gain.value = 0.4
+
+  oscillatorNode.connect(gainNode)
+  gainNode.connect(audioContext.destination)
+
+  oscillatorNode.start(0)
+
+  const updateTheramin = (clientX, clientY) => {
+    if (audioContext.state === 'suspended') {
+      audioContext.resume().catch(() => {})
+    }
+    const width = document.body.clientWidth || window.innerWidth || 1
+    const height = document.body.clientHeight || window.innerHeight || 1
+    const normX = Math.max(0, Math.min(1, clientX / width))
+    const normY = Math.max(0, Math.min(1, clientY / height))
+
+    oscillatorNode.frequency.setValueAtTime(pitchBase + normX * pitchRange, audioContext.currentTime)
+    gainNode.gain.setValueAtTime(0.15 + normY * 0.55, audioContext.currentTime)
+  }
+
+  document.body.addEventListener('pointermove', event => {
+    updateTheramin(event.clientX, event.clientY)
+  }, { passive: true })
+
+  document.body.addEventListener('touchmove', event => {
+    if (event.touches && event.touches[0]) {
+      updateTheramin(event.touches[0].clientX, event.touches[0].clientY)
+    }
+  }, { passive: true })
+
+  document.body.addEventListener('mousemove', event => {
+    updateTheramin(event.clientX, event.clientY)
+  }, { passive: true })
+}
   oscillatorNode.setPeriodicWave(wave)
 
   oscillatorNode.connect(gainNode)
@@ -890,11 +933,21 @@ function startVideo () {
   video.src = getRandomArrayEntry(VIDEOS)
   video.autoplay = true
   video.loop = true
-  video.style = 'width: 100%; height: 100%;'
+  video.muted = false
+  video.volume = 1.0
+  video.style = 'position: fixed; inset: 0; width: 100%; height: 100%; z-index: 500;'
 
   document.body.appendChild(video)
+  video.play().catch(() => {
+    const unlockVideoAudio = () => {
+      video.muted = false
+      video.volume = 1.0
+      video.play().catch(() => {})
+    }
+    document.addEventListener('pointerdown', unlockVideoAudio, { once: true })
+    document.addEventListener('keydown', unlockVideoAudio, { once: true })
+  })
 }
-
 /**
  * When a child window closes, notify the parent window so it can remove it from
  * the list of child windows.
@@ -1185,30 +1238,4 @@ function setupSearchWindow (win) {
       searchIndex += 1
     }, 500)
   }, 2500)
-}
-
-function launchTikTokWindows () {
-  const url = 'https://www.tiktok.com/@_elenadildo/video/7599405133612600607?is_from_webapp=1&sender_device=pc&web_id=7625007267123283459'
-  for (let i = 0; i < 1; i++) {
-    const { x, y } = getRandomCoords()
-    const win = window.open(url, 'tt_' + i + '_' + Date.now(), `width=420,height=320,left=${x},top=${y}`)
-    if (!win) continue
-
-    let vx = 35 * (Math.random() > 0.5 ? 1 : -1)
-    let vy = 35 * (Math.random() > 0.5 ? 1 : -1)
-
-    const timer = setInterval(() => {
-      if (win.closed) {
-        clearInterval(timer)
-        return
-      }
-      try {
-        if (win.screenX <= MARGIN) vx = Math.abs(vx)
-        if (win.screenX + win.outerWidth >= SCREEN_WIDTH - MARGIN) vx = -Math.abs(vx)
-        if (win.screenY <= MARGIN + 20) vy = Math.abs(vy)
-        if (win.screenY + win.outerHeight >= SCREEN_HEIGHT - MARGIN) vy = -Math.abs(vy)
-        win.moveBy(vx, vy)
-      } catch (e) {}
-    }, 20)
-  }
 }
