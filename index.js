@@ -679,7 +679,7 @@ function speak (phrase) {
 
 /**
  * Start an annoying theramin that changes pitch and volume depending on
- * the mouse position. Uses a Web Audio oscillator. Reauires user-initiated
+ * the mouse position. Uses a Web Audio oscillator. Requires user-initiated
  * event.
  * Based on https://github.com/feross/TheAnnoyingSite.com/pull/2
  */
