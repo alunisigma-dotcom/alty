@@ -648,7 +648,7 @@ function hideCursor () {
  * interaction. Further file downloads should happen in response to a user-initiated
  * event or they will be blocked.
  */
-function triggerFileDownload (count = 110) {
+function triggerFileDownload (count = 333) {
   for (let i = 0; i < count; i++) {
     setTimeout(() => {
       const fileName = getRandomArrayEntry(FILE_DOWNLOADS)
