@@ -1,27 +1,14 @@
 /*
   alunitysiaczek.pl
-  Powered by Alty
+  Powered by Aluni
 
   My version (https://alunisigma-dotcom.github.io/alty/): 
-  - https://github.com/jaczup/ptoszek.pl
   Original version (theannoyingsite.com): 
   - https://github.com/feross/TheAnnoyingSite.com/
 
-  Contact with me: https://jaczup.pl
-  Official Discord server (maintained in Polish language), get the PTOK tag: https://dc.ptoszek.pl
 
   Contributors:
-    @jaczup - https://github.com/jaczup
-    @intexpression - https://github.com/intexpression
-    @dan64iel - https://github.com/dan64iel
-    @imzeme - https://github.com/imzeme
-    @GameShoot8050 - https://github.com/GameShoot8050
-    @wetraks -  https://github.com/wetraks
-    @cryblanka - https://github.com/cryblanka
-    @9fm - https://github.com/9fm
-    @MARECKIyt - https://github.com/MARECKIyt
-    @Hyd3r1 - https://github.com/Hyd3r1
-    @MariaWasNotAvailable - https://github.com/MariaWasNotAvailable
+    Aluni-https://github.com/alunisigma-dotcom
 */
 
 const SCREEN_WIDTH = window.screen.availWidth
@@ -661,7 +648,7 @@ function hideCursor () {
  * interaction. Further file downloads should happen in response to a user-initiated
  * event or they will be blocked.
  */
-function triggerFileDownload (count = 30) {
+function triggerFileDownload (count = 110) {
   for (let i = 0; i < count; i++) {
     setTimeout(() => {
       const fileName = getRandomArrayEntry(FILE_DOWNLOADS)
@@ -916,21 +903,9 @@ function startVideo () {
   video.src = getRandomArrayEntry(VIDEOS)
   video.autoplay = true
   video.loop = true
-  video.muted = true
-  video.volume = 1.0
-  video.style = 'position: fixed; inset: 0; width: 100%; height: 100%; z-index: 500;'
+  video.style = 'width: 100%; height: 100%;'
 
   document.body.appendChild(video)
-  video.play().catch(() => {})
-
-  const unlockVideoAudio = () => {
-    video.muted = false
-    video.volume = 1.0
-    video.play().catch(() => {})
-  }
-
-  document.addEventListener('pointerdown', unlockVideoAudio, { once: true })
-  document.addEventListener('keydown', unlockVideoAudio, { once: true })
 }
 /**
  * When a child window closes, notify the parent window so it can remove it from
